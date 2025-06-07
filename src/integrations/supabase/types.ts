@@ -9,7 +9,84 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          email: string
+          full_name: string | null
+          id: string
+          phone: string | null
+          updated_at: string
+          user_type: Database["public"]["Enums"]["user_type"]
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          email: string
+          full_name?: string | null
+          id: string
+          phone?: string | null
+          updated_at?: string
+          user_type?: Database["public"]["Enums"]["user_type"]
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string
+          user_type?: Database["public"]["Enums"]["user_type"]
+        }
+        Relationships: []
+      }
+      vendor_profiles: {
+        Row: {
+          business_address: string | null
+          business_description: string | null
+          business_name: string
+          business_phone: string | null
+          created_at: string
+          cuisine_type: string | null
+          id: string
+          is_verified: boolean | null
+          operating_hours: Json | null
+          rating: number | null
+          total_reviews: number | null
+          updated_at: string
+        }
+        Insert: {
+          business_address?: string | null
+          business_description?: string | null
+          business_name: string
+          business_phone?: string | null
+          created_at?: string
+          cuisine_type?: string | null
+          id: string
+          is_verified?: boolean | null
+          operating_hours?: Json | null
+          rating?: number | null
+          total_reviews?: number | null
+          updated_at?: string
+        }
+        Update: {
+          business_address?: string | null
+          business_description?: string | null
+          business_name?: string
+          business_phone?: string | null
+          created_at?: string
+          cuisine_type?: string | null
+          id?: string
+          is_verified?: boolean | null
+          operating_hours?: Json | null
+          rating?: number | null
+          total_reviews?: number | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -18,7 +95,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      user_type: "customer" | "vendor"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -133,6 +210,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      user_type: ["customer", "vendor"],
+    },
   },
 } as const
