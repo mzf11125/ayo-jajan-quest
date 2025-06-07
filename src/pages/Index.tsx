@@ -20,42 +20,51 @@ const Index = () => {
   const xpProgress = ((userXP % 200) / 200) * 100;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-yellow-50 to-red-50">
-      {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md border-b border-orange-200 sticky top-0 z-50">
+    <div className="min-h-screen bg-background">
+      {/* Header - Simplified like user's design */}
+      <header className="bg-card border-b-4 border-border sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-r from-orange-500 to-red-500 rounded-xl flex items-center justify-center text-white font-bold text-lg">
-                🍢
+              <div className="w-12 h-12 bg-primary rounded-sm flex items-center justify-center text-2xl pixel-shadow">
+                🚚
               </div>
               <div>
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
+                <h1 className="text-2xl font-bold text-foreground">
                   Ayo Jajan
                 </h1>
                 <p className="text-sm text-muted-foreground">Street Food Adventure</p>
               </div>
             </div>
             
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2 bg-gradient-to-r from-yellow-100 to-orange-100 px-3 py-2 rounded-full">
-                <Zap className="w-4 h-4 text-orange-500" />
-                <span className="font-semibold text-orange-700">{userPoints} pts</span>
+            <div className="flex items-center gap-3">
+              <div className="bg-secondary px-3 py-2 rounded-sm border-2 border-border pixel-shadow">
+                <div className="flex items-center gap-1">
+                  <span className="food-emoji">⭐</span>
+                  <span className="font-bold text-foreground">{userPoints}</span>
+                </div>
               </div>
-              <div className="flex items-center gap-2 bg-gradient-to-r from-purple-100 to-pink-100 px-3 py-2 rounded-full">
-                <Award className="w-4 h-4 text-purple-500" />
-                <span className="font-semibold text-purple-700">Level {userLevel}</span>
+              <div className="bg-accent px-3 py-2 rounded-sm border-2 border-border pixel-shadow text-white">
+                <div className="flex items-center gap-1">
+                  <span className="food-emoji">🏆</span>
+                  <span className="font-bold">Lv{userLevel}</span>
+                </div>
               </div>
             </div>
           </div>
           
-          {/* XP Progress Bar */}
+          {/* XP Progress Bar - Pixel style */}
           <div className="mt-4">
             <div className="flex items-center justify-between text-sm mb-2">
-              <span className="text-muted-foreground">Progress to Level {userLevel + 1}</span>
-              <span className="font-medium">{userXP} / {nextLevelXP} XP</span>
+              <span className="text-muted-foreground font-bold">Next Level</span>
+              <span className="font-bold">{userXP} / {nextLevelXP} XP</span>
             </div>
-            <Progress value={xpProgress} className="h-2 bg-orange-100" />
+            <div className="w-full bg-muted h-4 rounded-sm border-2 border-border">
+              <div 
+                className="bg-accent h-full rounded-sm transition-all duration-300"
+                style={{ width: `${xpProgress}%` }}
+              ></div>
+            </div>
           </div>
         </div>
       </header>
@@ -63,37 +72,37 @@ const Index = () => {
       {/* Main Content */}
       <main className="container mx-auto px-4 py-6">
         <Tabs defaultValue="explore" className="w-full">
-          <TabsList className="grid w-full grid-cols-4 bg-white/70 backdrop-blur-sm">
-            <TabsTrigger value="explore" className="flex items-center gap-2">
+          <TabsList className="grid w-full grid-cols-4 bg-card border-2 border-border rounded-sm pixel-shadow">
+            <TabsTrigger value="explore" className="flex items-center gap-2 data-[state=active]:bg-primary data-[state=active]:text-white font-bold">
               <MapPin className="w-4 h-4" />
-              Explore
+              <span className="hidden sm:inline">Explore</span>
             </TabsTrigger>
-            <TabsTrigger value="challenges" className="flex items-center gap-2">
+            <TabsTrigger value="challenges" className="flex items-center gap-2 data-[state=active]:bg-primary data-[state=active]:text-white font-bold">
               <Star className="w-4 h-4" />
-              Challenges
+              <span className="hidden sm:inline">Quest</span>
             </TabsTrigger>
-            <TabsTrigger value="rewards" className="flex items-center gap-2">
+            <TabsTrigger value="rewards" className="flex items-center gap-2 data-[state=active]:bg-primary data-[state=active]:text-white font-bold">
               <Gift className="w-4 h-4" />
-              Rewards
+              <span className="hidden sm:inline">Shop</span>
             </TabsTrigger>
-            <TabsTrigger value="vendor" className="flex items-center gap-2">
+            <TabsTrigger value="vendor" className="flex items-center gap-2 data-[state=active]:bg-primary data-[state=active]:text-white font-bold">
               <Users className="w-4 h-4" />
-              Vendor
+              <span className="hidden sm:inline">Vendor</span>
             </TabsTrigger>
           </TabsList>
 
           <TabsContent value="explore" className="mt-6">
-            <div className="grid gap-6">
-              {/* Welcome Card */}
-              <Card className="bg-gradient-to-r from-orange-500 to-red-500 text-white border-0">
+            <div className="space-y-6">
+              {/* Welcome Card - Pixel art style */}
+              <Card className="bg-primary text-white border-4 border-orange-600 pixel-shadow">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
                       <h2 className="text-2xl font-bold mb-2">Selamat Jajan! 🎉</h2>
-                      <p className="text-orange-100 mb-4">
-                        Discover amazing street food near you and earn rewards!
+                      <p className="text-orange-100 mb-4 font-bold">
+                        Find amazing street food & earn rewards!
                       </p>
-                      <Button variant="secondary" className="bg-white text-orange-600 hover:bg-orange-50">
+                      <Button className="bg-card text-foreground border-2 border-border pixel-shadow hover:bg-secondary font-bold">
                         <MapPin className="w-4 h-4 mr-2" />
                         Find Food Carts
                       </Button>
